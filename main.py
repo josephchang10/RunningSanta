@@ -300,14 +300,15 @@ while run:
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_SPACE] or keys[pygame.K_UP]:
-            jump_s.play(0)
+            jump_s.play(loops=0,fade_ms=500)
             if not(runner.jumping):
                 runner.jumping = True
                 
         if keys[pygame.K_DOWN]:
             if not(runner.sliding):
                 runner.sliding = True
-                grass_s.play(2)
+                if runner.jumping ==False:
+                    grass_s.play(2)
 
 
     clock.tick(speed)
