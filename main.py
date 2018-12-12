@@ -1,5 +1,5 @@
 # Setup ------------------------------------------------------ #
-import pygame, sys, os, math, random, time
+import pygame, os, math, random
 from pygame.locals import *
 
 # Setup pygame/window ---------------------------------------- #
