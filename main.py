@@ -310,7 +310,6 @@ while run:
                 if runner.jumping ==False:
                     grass_s.play(2)
 
-
     clock.tick(speed)
     redrawWindow()
 
