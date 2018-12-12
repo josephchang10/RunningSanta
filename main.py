@@ -57,6 +57,7 @@ class player(object):
     jump = [pygame.image.load(os.path.join('images', 'Jump (' + str(x) + ').png')) for x in range(1,17)]
     slide = [pygame.image.load(os.path.join('images', 'Slide (' + str(x) + ').png')) for x in range(1,12)]
     fall = [pygame.image.load(os.path.join('images', 'Dead (' + str(x) + ').png')) for x in range(1,18)]
+    #Increment of height of the Santa per frame, with the length of 105.
     jumpList = [1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,-1,-1,-1,-1,-1,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4]
     def __init__(self, x, y, width, height):
         self.x = x
@@ -107,6 +108,7 @@ class player(object):
         # pygame.draw.rect(win, (255,0,0),self.hitbox, 2)
 
 class saw(object):
+    #Implementation of animation of the swirling saws.
     rotate = [pygame.image.load(os.path.join('images', 'SAW0.PNG')),pygame.image.load(os.path.join('images', 'SAW1.PNG')),pygame.image.load(os.path.join('images', 'SAW2.PNG')),pygame.image.load(os.path.join('images', 'SAW3.PNG'))]
     def __init__(self,x,y,width,height):
         self.x = x
@@ -117,13 +119,14 @@ class saw(object):
         self.vel = 1.4
 
     def draw(self,win):
+        #To define the position and size of the hitbox.
         self.hitbox = (self.x + 25, self.y + 5, self.width - 50, self.height - 5)
 #        pygame.draw.rect(win, (255,0,0), self.hitbox, 2)
         if self.rotateCount >= 8:
             self.rotateCount = 0
         win.blit(pygame.transform.scale(self.rotate[self.rotateCount//2], (64,64)), (self.x,self.y))
         self.rotateCount += 1
-
+    #To judge whether collision happens.
     def collide(self, rect):
         if rect[0] + rect[2] > self.hitbox[0] and rect[0] < self.hitbox[0] + self.hitbox[2]:
             if rect[1] + rect[3] > self.hitbox[1]:
@@ -144,6 +147,7 @@ class spike(saw):
         return r1.colliderect(r2)
 
 def updateFile(): 
+    # To open the file recording the longest history distance.  
     f = open('scores.txt','r')
     file = f.readlines()
     last = int(file[0])
@@ -182,13 +186,13 @@ def endScreen():
                     runner.falling = False
                     runner.sliding = False
                     load_bg()
-               
+        #To display the longest distance and the distance of this set.
         win.blit(bg, (0,0))
         largeFont = pygame.font.SysFont('comicsans', 80)
         hintFont =  pygame.font.SysFont('comicsans', 40)
         lastScore = largeFont.render('Longest Distance: ' + str(int(updateFile()))+'m',1,(255,255,255))
         currentScore = largeFont.render('Distance: '+ str(int(score))+'m',1,(255,255,255))
-        
+  # Some hints on endscreen indicating user how to continue or leave.
         hint = hintFont.render('PRESS ANY KEY TO CONTINUE',1,(255,255,255))
         exitHint = hintFont.render('PRESS ESC TO QUIT',1,(255,255,255))
         win.blit(lastScore, (W/2 - lastScore.get_width()/2,100))
@@ -207,7 +211,7 @@ def redrawWindow():
     runner.draw(win)
     for obstacle in obstacles:
         obstacle.draw(win)
-
+    # To display instant distance of the role.    
     largeFont = pygame.font.SysFont('comicsans', 30)
     text = largeFont.render('Distance: ' + str(int(score))+'m', 1, (255,255,255))
     win.blit(text, (600, 10))
