@@ -3,7 +3,7 @@ This is a Christmas-themed game in python using the module [pygame](http://www.p
 # Setup
 1. Before running the program, the pygame module need to be installed. How to install pygame: http://www.pygame.org/download.shtml
 2. After installation of pygame, run `python main.py`. Then the game should run successfully.
-3. use <kbd>↑</kbd> and </kbd>↓</kbd> key to play and </kbd>Esc</kbd> to close the game.
+3. use <kbd>↑</kbd> and <kbd>↓</kbd> key to play and <kbd>Esc</kbd> to close the game.
 # Inspiration
 The game was inspired by the “Hurdle Jump”:
 * https://www.youtube.com/watch?v=FS7ji4FDRw0
