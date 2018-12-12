@@ -190,9 +190,11 @@ def endScreen():
         currentScore = largeFont.render('Distance: '+ str(int(score))+'m',1,(255,255,255))
         
         hint = hintFont.render('PRESS ANY KEY TO CONTINUE',1,(255,255,255))
+        exitHint = hintFont.render('PRESS ESC TO QUIT',1,(255,255,255))
         win.blit(lastScore, (W/2 - lastScore.get_width()/2,100))
         win.blit(currentScore, (W/2 - currentScore.get_width()/2, 160))
         win.blit(hint,(W/2 - hint.get_width()/2, 280))
+        win.blit(exitHint,(W/2 - exitHint.get_width()/2, 320))
         pygame.display.update()
     score = 0
 
